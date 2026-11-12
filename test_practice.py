@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from practice import main
-from utils import add_numbers, multiply_numbers, read_integer
+from utils import add_numbers, multiply_numbers, read_integer, select_operation
 
 
 class AddNumbersTests(unittest.TestCase):
@@ -17,6 +17,15 @@ class AddNumbersTests(unittest.TestCase):
 
     def test_multiplies_integers(self):
         self.assertEqual(multiply_numbers(-2, 3), -6)
+
+    @patch("builtins.input", side_effect=["invalid", "2"])
+    @patch("builtins.print")
+    def test_select_operation_retries_invalid_choice(self, mock_print, mock_input):
+        self.assertEqual(select_operation(), "2")
+        self.assertIn(
+            unittest.mock.call("Nederīga izvēle. Izvēlies 1 vai 2."),
+            mock_print.call_args_list,
+        )
 
     @patch("builtins.print")
     @patch("builtins.input", side_effect=["1", "2", "3", "nē"])
