@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
 
+from practice import main
 from utils import add_numbers, multiply_numbers, read_integer
 
 
@@ -16,6 +17,18 @@ class AddNumbersTests(unittest.TestCase):
 
     def test_multiplies_integers(self):
         self.assertEqual(multiply_numbers(-2, 3), -6)
+
+    @patch("builtins.print")
+    @patch("builtins.input", side_effect=["1", "2", "3"])
+    def test_main_selects_addition(self, mock_input, mock_print):
+        main()
+        mock_print.assert_called_with("Rezultāts: 5")
+
+    @patch("builtins.print")
+    @patch("builtins.input", side_effect=["2", "2", "3"])
+    def test_main_selects_multiplication(self, mock_input, mock_print):
+        main()
+        mock_print.assert_called_with("Rezultāts: 6")
 
     @patch("builtins.input", side_effect=["abc", "4"])
     @patch("builtins.print")
