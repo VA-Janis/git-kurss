@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from practice import add_numbers, multiply_numbers, read_integer
+from utils import add_numbers, multiply_numbers, read_integer
 
 
 class AddNumbersTests(unittest.TestCase):
