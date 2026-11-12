@@ -2,9 +2,17 @@ def add_numbers(first: int, second: int) -> int:
     return first + second
 
 
+def read_integer(prompt: str) -> int:
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Lūdzu, ievadi veselu skaitli.")
+
+
 def main() -> None:
-    first = int(input("Ievadi pirmo skaitli: "))
-    second = int(input("Ievadi otro skaitli: "))
+    first = read_integer("Ievadi pirmo skaitli: ")
+    second = read_integer("Ievadi otro skaitli: ")
     print(f"Summa: {add_numbers(first, second)}")
 
 
