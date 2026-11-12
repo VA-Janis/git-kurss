@@ -2,11 +2,17 @@
 Programmatūras ieviešanas un uzturēšanas dzīves cikls un procesu automatizācija
 Pirmā izmaiņa
 
-## Practice funkcija un testi
+## Kalkulators
 
-Failā `practice.py` ir funkcija `add_numbers(first, second)`, kas saskaita divus skaitļus un atgriež rezultātu. Palaižot failu tieši, tiek izsaukta funkcija ar skaitļiem `2` un `3`, un terminālī izvadīts rezultāts `5`.
+Fails `practice.py` satur kalkulatora galveno funkciju. Tā ļauj izvēlēties saskaitīšanu vai reizināšanu, ievadīt veselus skaitļus un atkārtot aprēķinus. Atbalsta funkcijas (`add_numbers`, `multiply_numbers`, `read_integer`, `select_operation` un `ask_to_repeat`) atrodas failā `utils.py`. Nederīgas izvēles vai ievades gadījumā programma pieprasa ievadīt vērtību atkārtoti.
 
-Funkcijas testi atrodas failā `test_practice.py`. Tie pārbauda pozitīvu skaitļu, negatīva skaitļa un nulles saskaitīšanu. Lai palaistu testus no projekta mapes, izpildi:
+Lai palaistu kalkulatoru no projekta mapes:
+
+```bash
+python practice.py
+```
+
+Testi atrodas failā `test_practice.py` un pārbauda matemātiskās funkcijas, nederīgas ievades apstrādi, darbības izvēli un aprēķinu atkārtošanu. Lai palaistu testus:
 
 ```bash
 python -m unittest -v test_practice
