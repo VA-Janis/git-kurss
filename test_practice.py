@@ -19,16 +19,23 @@ class AddNumbersTests(unittest.TestCase):
         self.assertEqual(multiply_numbers(-2, 3), -6)
 
     @patch("builtins.print")
-    @patch("builtins.input", side_effect=["1", "2", "3"])
+    @patch("builtins.input", side_effect=["1", "2", "3", "nē"])
     def test_main_selects_addition(self, mock_input, mock_print):
         main()
         mock_print.assert_called_with("Rezultāts: 5")
 
     @patch("builtins.print")
-    @patch("builtins.input", side_effect=["2", "2", "3"])
+    @patch("builtins.input", side_effect=["2", "2", "3", "nē"])
     def test_main_selects_multiplication(self, mock_input, mock_print):
         main()
         mock_print.assert_called_with("Rezultāts: 6")
+
+    @patch("builtins.print")
+    @patch("builtins.input", side_effect=["1", "2", "3", "jā", "2", "4", "5", "nē"])
+    def test_main_repeats_calculation(self, mock_input, mock_print):
+        main()
+        self.assertIn(unittest.mock.call("Rezultāts: 5"), mock_print.call_args_list)
+        self.assertIn(unittest.mock.call("Rezultāts: 20"), mock_print.call_args_list)
 
     @patch("builtins.input", side_effect=["abc", "4"])
     @patch("builtins.print")
