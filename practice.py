@@ -1,10 +1,23 @@
-from utils import add_numbers, read_integer
+from utils import add_numbers, multiply_numbers, read_integer
 
 
 def main() -> None:
+    while True:
+        print("Izvēlies darbību:")
+        print("1 - Saskaitīšana")
+        print("2 - Reizināšana")
+        operation = input("Tava izvēle: ")
+        if operation in ("1", "2"):
+            break
+        print("Nederīga izvēle. Izvēlies 1 vai 2.")
+
     first = read_integer("Ievadi pirmo skaitli: ")
     second = read_integer("Ievadi otro skaitli: ")
-    print(f"Summa: {add_numbers(first, second)}")
+
+    if operation == "1":
+        print(f"Rezultāts: {add_numbers(first, second)}")
+    else:
+        print(f"Rezultāts: {multiply_numbers(first, second)}")
 
 
 if __name__ == "__main__":
