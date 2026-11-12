@@ -1,6 +1,7 @@
 import unittest
+from unittest.mock import patch
 
-from practice import add_numbers
+from practice import add_numbers, read_integer
 
 
 class AddNumbersTests(unittest.TestCase):
@@ -12,6 +13,13 @@ class AddNumbersTests(unittest.TestCase):
 
     def test_adds_zero(self):
         self.assertEqual(add_numbers(0, 0), 0)
+
+    @patch("builtins.input", side_effect=["abc", "4"])
+    @patch("builtins.print")
+    def test_read_integer_retries_invalid_input(self, mock_print, mock_input):
+        self.assertEqual(read_integer("Skaitlis: "), 4)
+        mock_print.assert_called_once_with("Lūdzu, ievadi veselu skaitli.")
+        self.assertEqual(mock_input.call_count, 2)
 
 
 if __name__ == "__main__":
