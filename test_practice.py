@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from practice import add_numbers, read_integer
+from practice import add_numbers, multiply_numbers, read_integer
 
 
 class AddNumbersTests(unittest.TestCase):
@@ -13,6 +13,9 @@ class AddNumbersTests(unittest.TestCase):
 
     def test_adds_zero(self):
         self.assertEqual(add_numbers(0, 0), 0)
+
+    def test_multiplies_integers(self):
+        self.assertEqual(multiply_numbers(-2, 3), -6)
 
     @patch("builtins.input", side_effect=["abc", "4"])
     @patch("builtins.print")
