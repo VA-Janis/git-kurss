@@ -1,16 +1,9 @@
-from utils import add_numbers, multiply_numbers, read_integer
+from utils import add_numbers, multiply_numbers, read_integer, select_operation
 
 
 def main() -> None:
     while True:
-        while True:
-            print("Izvēlies darbību:")
-            print("1 - Saskaitīšana")
-            print("2 - Reizināšana")
-            operation = input("Tava izvēle: ")
-            if operation in ("1", "2"):
-                break
-            print("Nederīga izvēle. Izvēlies 1 vai 2.")
+        operation = select_operation()
 
         first = read_integer("Ievadi pirmo skaitli: ")
         second = read_integer("Ievadi otro skaitli: ")
