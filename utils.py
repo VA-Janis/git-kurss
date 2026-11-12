@@ -23,3 +23,13 @@ def select_operation() -> str:
         if operation in ("1", "2"):
             return operation
         print("Nederīga izvēle. Izvēlies 1 vai 2.")
+
+
+def ask_to_repeat() -> bool:
+    while True:
+        repeat = input("Vai vēlies veikt vēl vienu aprēķinu? (jā/nē): ").strip().lower()
+        if repeat in ("j", "ja", "jā"):
+            return True
+        if repeat in ("n", "ne", "nē"):
+            return False
+        print("Lūdzu, atbildi ar jā vai nē.")

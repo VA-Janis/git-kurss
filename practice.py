@@ -1,4 +1,4 @@
-from utils import add_numbers, multiply_numbers, read_integer, select_operation
+from utils import add_numbers, ask_to_repeat, multiply_numbers, read_integer, select_operation
 
 
 def main() -> None:
@@ -13,13 +13,8 @@ def main() -> None:
         else:
             print(f"Rezultāts: {multiply_numbers(first, second)}")
 
-        while True:
-            repeat = input("Vai vēlies veikt vēl vienu aprēķinu? (jā/nē): ").strip().lower()
-            if repeat in ("j", "ja", "jā"):
-                break
-            if repeat in ("n", "ne", "nē"):
-                return
-            print("Lūdzu, atbildi ar jā vai nē.")
+        if not ask_to_repeat():
+            return
 
 
 if __name__ == "__main__":
