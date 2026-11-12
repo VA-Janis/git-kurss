@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from practice import main
-from utils import add_numbers, multiply_numbers, read_integer, select_operation
+from utils import add_numbers, ask_to_repeat, multiply_numbers, read_integer, select_operation
 
 
 class AddNumbersTests(unittest.TestCase):
@@ -26,6 +26,16 @@ class AddNumbersTests(unittest.TestCase):
             unittest.mock.call("Nederīga izvēle. Izvēlies 1 vai 2."),
             mock_print.call_args_list,
         )
+
+    @patch("builtins.input", side_effect=["maybe", " JĀ "])
+    @patch("builtins.print")
+    def test_ask_to_repeat_retries_invalid_answer(self, mock_print, mock_input):
+        self.assertTrue(ask_to_repeat())
+        mock_print.assert_called_once_with("Lūdzu, atbildi ar jā vai nē.")
+
+    @patch("builtins.input", return_value="nē")
+    def test_ask_to_repeat_returns_false_for_no(self, mock_input):
+        self.assertFalse(ask_to_repeat())
 
     @patch("builtins.print")
     @patch("builtins.input", side_effect=["1", "2", "3", "nē"])
